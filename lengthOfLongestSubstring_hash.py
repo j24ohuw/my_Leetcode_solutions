@@ -6,6 +6,3 @@ def length(s):
         d[char] = index
         sequence.append([min(i for i in d.values() if i >= 0), max(d.values())])
     return max([i[1]-i[0]+1 for i in sequence]) if len(s) > 1 else (1 if len(s) == 1 else 0)
-
-
-
