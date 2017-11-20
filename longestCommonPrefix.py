@@ -6,17 +6,11 @@ class Solution:
         """
         if len(strs) == 0: return ""
         if len(strs) == 1: return strs[0]
-        pre = list(strs[0])
-        for i in strs[1:]:
-            e = 0
-            while True:
-                if e > min(len(pre),len(i))-1:  
-                    pre = pre[:e]
-                    break
-                if pre[e] == i[e]:              
-                    e += 1
-                else:              
-                    pre = pre[:e]
-                    break
-
-        return ''.join(pre) if len(pre) != 0 else ""
+        for char in range(len(strs[0])):
+            for i in strs[1:]:
+                try:
+                    if strs[0][char] != i[char]:
+                        return strs[0][:char]
+                except:
+                    return strs[0][:char]
+        return strs[0]
