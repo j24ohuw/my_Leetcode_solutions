@@ -1,0 +1,32 @@
+#https://www.hackerrank.com/challenges/ctci-ransom-note/problem
+
+def ransom_note(magazine, ransom):
+#     ransom = {word:ransom.count(word) for word in set(ransom)}
+#     magazine = {word:magazine.count(word) for word in ransom.keys()}
+    ransom = make_dict(ransom)
+    magazine = make_dict(magazine)
+    
+    for key in ransom.keys():
+        if ransom[key] > magazine[key]:
+            return False
+    return True
+            
+
+def make_dict(array):
+    temp = {}
+    for word in array:
+        if word in temp.keys():
+            temp[word] += 1
+        else:
+            temp[word] = 1
+    return temp
+        
+m, n = map(int, input().strip().split(' '))
+magazine = input().strip().split(' ')
+ransom = input().strip().split(' ')
+answer = ransom_note(magazine, ransom)
+if(answer):
+    print("Yes")
+else:
+    print("No")
+    
