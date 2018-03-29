@@ -1,0 +1,41 @@
+#https://www.hackerrank.com/challenges/ctci-bfs-shortest-reach/problem
+
+class Graph:
+    def __init__(self, n):
+        self.nodeCount = n
+        self.graph = [[] for i in range(n)]
+    def connect(self, n1, n2):
+        self.graph[n1].append(n2)
+        self.graph[n2].append(n1)
+    def find_all_distances(self, root):
+        queue = [root]
+        visited = [-1] * self.nodeCount
+        visited[root] = 0
+        #for all connected vertices
+        while queue:
+            current = queue.pop(0)
+            for v in self.graph[current]:
+                if visited[v] == -1:
+                    visited[v] = visited[current] + 6
+                    queue.append(v)
+    
+        string = ''
+        for i in visited:
+            if i!= 0:
+                string += str(i) + ' '
+        print(string[:-1])
+            
+
+
+
+t = int(input())
+for i in range(t):
+    n,m = [int(value) for value in input().split()]
+    graph = Graph(n)
+    for i in range(m):
+        x,y = [int(x) for x in input().split()]
+        # print(x-1, y-1)
+        graph.connect(x-1,y-1) 
+    s = int(input())
+    graph.find_all_distances(s-1)
+
