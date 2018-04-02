@@ -1,0 +1,16 @@
+#!/bin/python3
+
+import sys
+
+def make_change(coins, n):
+    r = [0 for i in range(n+1)]
+    r[0] = 1
+    for i in coins:
+        for e in range(i,n+1):
+            r[e] += r[e-i]
+    return r[n]
+
+n,m = input().strip().split(' ')
+n,m = [int(n),int(m)]
+coins = [int(coins_temp) for coins_temp in input().strip().split(' ')]
+print(make_change(coins, n))
